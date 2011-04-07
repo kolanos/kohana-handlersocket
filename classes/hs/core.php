@@ -238,12 +238,9 @@ class HS_Core {
 		
 		$result_array = array();
 		
-		foreach ($result as $i => $row)
+		foreach ($result as $row)
 		{
-			foreach ($row as $k => $v)
-			{
-				$result_array[$i][$this->_select[$k]] = trim($v);
-			}
+			$result_array[] = array_combine($this->_select, $row);
 		}
 	
 		return $result_array;
@@ -267,14 +264,9 @@ class HS_Core {
 		
 		$result_object = array();
 		
-		foreach ($result as $i => $row)
+		foreach ($result as $row)
 		{
-			$result_object[$i] = new stdClass;
-		
-			foreach ($row as $k => $v)
-			{
-				$result_object[$i]->{$this->_select[$k]} = trim($v);
-			}
+			$result_array[] = (object) array_combine($this->_select, $row);
 		}
 	
 		return $result_object;
